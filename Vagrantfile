@@ -140,9 +140,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       recipe[mysql::client]
       recipe[mysql::server]
       recipe[test_site]
-      recipe[iptables]
       recipe[php::module_mysql]
     ]
+    # Put iptables to the above, if you want to
+    # recipe[iptables]
   end
   # Added by euonymus. To avoid chef error
   config.omnibus.chef_version = :latest

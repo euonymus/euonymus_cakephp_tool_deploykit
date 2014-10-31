@@ -38,6 +38,14 @@ directory node[:test_site][:cake_source] + '/app/tmp/tests'  do
  group "www-data"
  mode "0777"
 end
+# remove files in tmp directory
+execute "init_tmp" do
+  command "find " + node[:test_site][:cake_source] + '/app/tmp -type f -exec rm {} \;'
+end
+# build mysql tables for the project
+execute "init_mysql_tables" do
+  command "mysql -u" + node[:test_site][:db_user] + " -p" + node[:test_site][:db_password] + " " + node[:test_site][:db_name] + " < " + node[:test_site][:cake_source] + "/app/Config/sql/init_tables.sql"
+end
 
 # file node[:test_site][:cake_source] + '/app/Config/database.php' do
 #   content IO.read(node[:test_site][:cake_source] + '/app/Config/database.php.default')
