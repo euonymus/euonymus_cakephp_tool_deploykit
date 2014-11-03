@@ -5,10 +5,10 @@ default[:test_site][:cache_root]  = "/var/cache"
 default[:test_site][:log_root]    = "/var/log"
 default[:test_site][:app_root]    = "#{node[:test_site][:www_root]}/#{node[:test_site][:app_name]}"
 
-default[:test_site][:db_name]    = 'application'
-default[:test_site][:db_user]    = 'application'
-default[:test_site][:testdb_name]    = 'application_test'
-default[:test_site][:testdb_user]    = 'application'
+default[:test_site][:db_name]     = 'euonymus'
+default[:test_site][:db_user]     = 'euonymus'
+default[:test_site][:testdb_name] = 'test_euonymus'
+default[:test_site][:testdb_user] = 'euonymus'
 
 default[:test_site][:cake_source] = '/vagrant/src/cakephp-2.5.5'
 default[:test_site][:cake_cache]  = "#{node[:test_site][:cache_root]}/#{node[:test_site][:app_name]}"
