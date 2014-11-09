@@ -45,3 +45,19 @@ mysql_database_user node[:test_site][:testdb_user] do
   host          'localhost'
   action        :grant
 end
+
+
+# build mysite.cnf for mysql config
+include_recipe 'mysql::server'
+
+template '/etc/mysql/conf.d/mysite.cnf' do
+  owner 'mysql'
+  owner 'mysql'      
+  source 'mysite.cnf.erb'
+  notifies :restart, 'mysql_service[default]'
+end
+
+# restart mysql
+execute "restart_mysql" do
+  command "sudo service mysql restart"
+end
